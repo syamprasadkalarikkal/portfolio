@@ -1,159 +1,147 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { FiMenu, FiX, FiSun, FiMoon } from 'react-icons/fi';
+import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
+import MascotIcon from '@/components/MascotIcon';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Check for saved theme preference or default to light mode
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.add('dark');
 
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    }
-
-    // Handle scroll effect
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setIsDark(true);
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  const handleLinkClick = (e, href) => {
+    e.preventDefault();
+    const targetId = href.substring(1);
+    const el = document.getElementById(targetId);
+    if (el) {
+      const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: offset, behavior: 'smooth' });
+      setIsOpen(false);
     }
   };
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Skills', href: '/skills' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Contact', href: '/contact' },
-  ];
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'glass shadow-lg py-4'
-          : 'bg-transparent py-6'
-        }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || isOpen ? 'glass shadow-[0_12px_35px_rgba(0,0,0,0.35)] py-3' : 'bg-transparent py-4'
+      }`}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
+
           {/* Logo */}
-          <Link
-            href="/"
-            className="font-display text-2xl font-bold gradient-text hover:scale-105 transition-transform"
-          >
-            syam.dev
+          <Link href="/" className="group flex items-center gap-2" aria-label="Syam portfolio home">
+            <span className="grid h-10 w-10 place-items-center rounded-2xl border border-emerald-300/30 bg-emerald-400/10 p-1 shadow-[0_0_18px_rgba(52,211,153,0.16)]">
+              <MascotIcon />
+            </span>
+            <span className="font-extrabold text-white text-lg leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+              syam<span className="text-emerald-300">.dev</span>
+            </span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link, index) => {
-              const isActive = pathname === link.href;
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
               return (
-                <Link
+                <a
                   key={link.name}
                   href={link.href}
-                  className={`${isActive
-                      ? 'text-blue-600 dark:text-blue-400 font-bold'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium'
-                    } transition-colors duration-200 animate-slide-down`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${isActive
+                      ? 'bg-emerald-400 text-[#041108] shadow-[0_0_18px_rgba(52,211,153,0.28)]'
+                      : 'text-emerald-100/65 hover:text-emerald-100 hover:bg-emerald-400/10'
+                    }`}
                 >
                   {link.name}
-                </Link>
+                </a>
               );
             })}
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-dark-800 
-                       hover:bg-gray-300 dark:hover:bg-dark-700 
-                       transition-colors duration-200 animate-slide-down"
-              style={{ animationDelay: '0.6s' }}
-              aria-label="Toggle theme"
-            >
-              {isDark ? (
-                <FiSun className="w-5 h-5 text-yellow-500" />
-              ) : (
-                <FiMoon className="w-5 h-5 text-gray-700" />
-              )}
-            </button>
+            <a href="/syamprasad_cv.pdf" download="Syam_Prasad_CV.pdf" className="btn btn-primary px-4 py-2">
+              <FiDownload className="h-4 w-4" />
+              Resume
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-4 md:hidden">
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-dark-800 
-                       hover:bg-gray-300 dark:hover:bg-dark-700 
-                       transition-colors duration-200"
-              aria-label="Toggle theme"
-            >
-              {isDark ? (
-                <FiSun className="w-5 h-5 text-yellow-500" />
-              ) : (
-                <FiMoon className="w-5 h-5 text-gray-700" />
-              )}
-            </button>
+          {/* Mobile Controls */}
+          <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-dark-800 
-                       hover:bg-gray-300 dark:hover:bg-dark-700 
-                       transition-colors duration-200"
+              className="p-2 rounded-lg border border-emerald-300/20 bg-emerald-400/10 text-emerald-100 hover:bg-emerald-400/15 transition-all"
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
-              {isOpen ? (
-                <FiX className="w-6 h-6" />
-              ) : (
-                <FiMenu className="w-6 h-6" />
-              )}
+              {isOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden mt-4 animate-slide-down">
-            <div className="glass rounded-2xl p-4 space-y-2">
+          <div className="md:hidden mt-3 pb-2 animate-fade-up">
+            <div className="glass rounded-lg p-2 space-y-1 shadow-xl shadow-black/30">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = activeSection === link.href.substring(1);
                 return (
-                  <Link
+                  <a
                     key={link.name}
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 rounded-lg ${isActive
-                        ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-bold'
-                        : 'text-gray-700 dark:text-gray-300 hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 font-medium'
-                      } transition-all duration-200`}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className={`flex items-center px-4 py-3 rounded-lg text-sm font-semibold transition-all ${isActive
+                        ? 'bg-emerald-400 text-[#041108]'
+                        : 'text-emerald-100/70 hover:bg-emerald-400/10 hover:text-emerald-100'
+                      }`}
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 );
               })}
+              <a
+                href="/syamprasad_cv.pdf"
+                download="Syam_Prasad_CV.pdf"
+                className="mt-2 btn btn-primary w-full"
+                onClick={() => setIsOpen(false)}
+              >
+                <FiDownload className="h-4 w-4" />
+                Download Resume
+              </a>
             </div>
           </div>
         )}

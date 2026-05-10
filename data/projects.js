@@ -2,59 +2,46 @@ export const projectsData = [
   {
     id: 1,
     title: "E-commerce Application",
-    type: "Internship Project",
+    type: "Freelance Project",
     duration: "2024",
-    description: "Developed a full-featured e-commerce web application during my internship at 9Commerce Technologies LLP. Implemented user authentication, shopping cart, wishlist functionality, and product management features.",
+    description: "Developed a full-featured e-commerce web application as a freelance project using Next.js, Supabase, Sanity CMS, and Razorpay payment integration.",
+    cover: {
+      label: "Commerce Platform",
+      title: "Storefront + CMS + Payments",
+      metric: "Supabase Auth",
+      tone: "emerald"
+    },
     keyFeatures: [
-      "User authentication and authorization system",
+      "Supabase authentication and database setup",
       "Add to cart with quantity management",
       "Wishlist functionality for saved items",
-      "Product listing with search and filters",
+      "Sanity CMS for product content management",
+      "Razorpay payment integration",
       "Responsive design for all devices",
       "Admin panel for product management"
     ],
-    technologies: ["React.js", "Next.js", "Node.js", "MongoDB", "Tailwind CSS", "JWT Authentication"],
+    technologies: ["Next.js", "Supabase Auth", "Supabase Database", "Sanity CMS", "Razorpay", "Tailwind CSS"],
     highlights: [
-      "Handled real user data and transactions",
-      "Implemented secure authentication flow",
+      "Built freelance e-commerce workflow",
+      "Implemented secure auth and payments",
       "Optimized for performance and SEO",
-      "Collaborated with senior developers"
+      "Connected CMS-managed product data"
     ],
     github: "https://github.com/syamprasadkalarikkal/ecommerce",
-    live: "https://ecommerce-iota-eight-24.vercel.app/",
-    category: "Full Stack"
+    live: "https://ecommerce-iota-eight-24.vercel.app/"
   },
   {
     id: 2,
-    title: "Collaborative Online Compiler",
-    type: "Academic Project",
-    duration: "2024",
-    description: "Built a multi-user collaborative coding platform that allows real-time code editing and execution. Multiple users can work on the same code simultaneously with live updates.",
-    keyFeatures: [
-      "Real-time collaborative code editing",
-      "Support for multiple programming languages",
-      "Live code execution and output display",
-      "User presence indicators",
-      "Syntax highlighting and code formatting",
-      "Session management for collaborative rooms"
-    ],
-    technologies: ["React.js", "WebSockets", "Node.js", "Express", "Code-Execution API", "Socket.io"],
-    highlights: [
-      "Implemented real-time synchronization",
-      "Handled concurrent user edits",
-      "Secure code execution environment",
-      "Optimized for low-latency communication"
-    ],
-    github: "https://github.com/syamprasadkalarikkal/online-compailer",
-    live: "https://github.com/syamprasadkalarikkal/online-compailer",
-    category: "Web Application"
-  },
-  {
-    id: 3,
     title: "College Tech Fest Registration Website",
-    type: "Academic Project",
+    type: "College Tech Fest",
     duration: "2023",
-    description: "Designed and developed an online registration platform for our college technical fest. The website facilitated event registration, participant data management, and provided an admin dashboard.",
+    description: "Designed and developed a Next.js registration website for a college technical fest, making participant registration simple and mobile-friendly.",
+    cover: {
+      label: "Tech Fest Site",
+      title: "Event Registration Portal",
+      metric: "Next.js only",
+      tone: "violet"
+    },
     keyFeatures: [
       "Online event registration system",
       "Multiple event categories and competitions",
@@ -63,7 +50,7 @@ export const projectsData = [
       "Email notifications for successful registration",
       "Export participant data to Excel/CSV"
     ],
-    technologies: ["HTML", "CSS", "JavaScript", "React.js", "Node.js", "MongoDB"],
+    technologies: ["Next.js"],
     highlights: [
       "Processed 500+ registrations successfully",
       "Simple and intuitive user interface",
@@ -71,9 +58,39 @@ export const projectsData = [
       "Mobile-responsive design"
     ],
     github: "https://github.com/syamprasadkalarikkal/aiconclave2025-govt-arts-and-science-college-tanur",
-    live: "https://aiconclave2025.gctanur.in/",
-    category: "Web Application"
+    live: "https://aiconclave2025.gctanur.in/"
+  },
+  {
+    id: 3,
+    title: "Collaborative Online Compiler",
+    type: "Academic Project",
+    duration: "2024",
+    description: "Built a multi-user collaborative coding platform with real-time editing, Docker-based execution, Supabase, WebSocket communication, and Groq AI support.",
+    cover: {
+      label: "Compiler Workspace",
+      title: "Realtime Code Execution",
+      metric: "Docker + AI",
+      tone: "sky"
+    },
+    keyFeatures: [
+      "Real-time collaborative code editing",
+      "Docker-based code execution workflow",
+      "Support for multiple programming languages",
+      "Live code execution and output display",
+      "Supabase for app data and user sessions",
+      "WebSocket-powered collaboration",
+      "Groq AI assistance",
+      "Syntax highlighting and code formatting",
+      "Session management for collaborative rooms"
+    ],
+    technologies: ["Next.js", "Docker", "Supabase", "WebSocket", "Groq AI"],
+    highlights: [
+      "Implemented real-time synchronization",
+      "Handled concurrent user edits",
+      "Secure code execution environment",
+      "Optimized for low-latency communication"
+    ],
+    github: "https://github.com/syamprasadkalarikkal/online-compailer",
+    live: "https://github.com/syamprasadkalarikkal/online-compailer"
   }
 ];
-
-export const projectCategories = ["All", "Full Stack", "Web Application", "Frontend"];

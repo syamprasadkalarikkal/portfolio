@@ -1,128 +1,176 @@
 'use client';
 
-import Link from 'next/link';
-import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowRight } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiDownload, FiArrowRight, FiMapPin, FiBriefcase, FiCode } from 'react-icons/fi';
 import { personalData } from '@/data/personal';
 
-const Hero = () => {
-  return (
-    <section className="min-h-screen flex items-center gradient-bg relative overflow-hidden">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Text Content */}
-          <div className="space-y-6 animate-slide-up">
-            <div className="inline-block">
-              <span className="px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium animate-fade-in">
-                Welcome to my portfolio
+const Hero = () => {
+  const firstName = personalData.name.split(' ')[0];
+  const lastName = personalData.name.split(' ').slice(1).join(' ');
+  const stats = [
+    { label: 'Class', value: 'Full Stack' },
+    { label: 'Quests', value: '3+' },
+    { label: 'Status', value: 'Open' },
+  ];
+
+  return (
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden gradient-bg pt-24 sm:pt-28 pb-14 sm:pb-20">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/70 to-transparent" />
+      <div className="absolute inset-0 dot-grid opacity-70" />
+      <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-emerald-400/10 blur-3xl sm:h-96 sm:w-96" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+
+          <div className="lg:col-span-7 space-y-7">
+            <div className="animate-fade-up">
+              <span className="inline-flex items-center gap-2 rounded-lg border border-emerald-300/25 bg-emerald-400/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-emerald-200 shadow-[0_0_22px_rgba(16,185,129,0.12)]" style={{ fontFamily: 'var(--font-mono)' }}>
+                <span className="h-2 w-2 rounded-full bg-lime-300 shadow-[0_0_0_4px_rgba(190,242,100,0.15)] animate-pulse" />
+                Ready for developer roles
               </span>
             </div>
 
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white animate-slide-up delay-100">
-              Hi, I'm <span className="gradient-text">{personalData.name.split(' ')[0]}</span>
-            </h1>
+            <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
+              <p className="mb-4 flex items-center gap-2 text-sm font-semibold text-emerald-100/65">
+                <FiMapPin className="h-4 w-4 text-emerald-300" />
+                {personalData.location}
+              </p>
+              <h1 className="max-w-4xl text-3xl font-extrabold leading-[1.08] text-white min-[380px]:text-4xl sm:text-5xl lg:text-7xl lg:leading-[0.98]" style={{ fontFamily: 'var(--font-display)' }}>
+                Building web quests with
+                <span className="gradient-text"> clean code</span>.
+              </h1>
+            </div>
 
-            <h2 className="font-display text-3xl md:text-4xl font-semibold text-gray-700 dark:text-gray-300 animate-slide-up delay-200">
-              {personalData.role}
-            </h2>
+            <div className="animate-fade-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-lg sm:text-xl md:text-2xl font-semibold text-emerald-50">
+                {firstName} {lastName} <span className="text-emerald-300/80">/</span> {personalData.role}
+              </p>
+            </div>
 
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 leading-relaxed animate-slide-up delay-300">
-              {personalData.tagline}
-            </p>
+            <div className="animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              <p className="text-base md:text-lg text-emerald-100/70 leading-relaxed max-w-2xl">
+                {personalData.about.summary}
+              </p>
+            </div>
 
-            <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed animate-slide-up delay-400">
-              Full-Stack Web Developer focused on building scalable, secure, and user-friendly web applications using modern technologies. </p>
+            <div className="grid grid-cols-1 max-w-xl gap-2 animate-fade-up min-[430px]:grid-cols-3" style={{ animationDelay: '0.35s' }}>
+              {stats.map((item) => (
+                <div key={item.label} className="rounded-lg border border-emerald-300/15 bg-black/25 px-3 py-4 sm:px-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                  <p className="text-lg sm:text-2xl font-extrabold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                    {item.value}
+                  </p>
+                  <p className="mt-1 text-[11px] sm:text-xs font-semibold uppercase tracking-[0.12em] text-emerald-300/55" style={{ fontFamily: 'var(--font-mono)' }}>
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 animate-slide-up delay-500">
-              <Link
-                href="/projects"
-                className="btn btn-primary flex items-center space-x-2 group"
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 animate-fade-up" style={{ animationDelay: '0.4s' }}>
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="btn btn-primary group w-full sm:w-auto"
               >
-                <span>View My Work</span>
-                <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-
-              <Link
-                href="/contact"
-                className="btn btn-outline flex items-center space-x-2"
+                View Projects
+                <FiArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="btn btn-secondary w-full sm:w-auto"
               >
-                <FiMail />
-                <span>Get In Touch</span>
-              </Link>
-
+                <FiMail className="w-4 h-4" />
+                Get In Touch
+              </a>
               <a
                 href="/syamprasad_cv.pdf"
                 download="Syam_Prasad_CV.pdf"
-                className="btn btn-secondary flex items-center space-x-2"
+                className="btn btn-outline w-full sm:w-auto"
               >
-                <FiDownload />
-                <span>Download CV</span>
+                <FiDownload className="w-4 h-4" />
+                Resume
               </a>
             </div>
 
-            {/* Social Links */}
-            <div className="flex items-center space-x-4 animate-slide-up delay-500">
-              <span className="text-gray-600 dark:text-gray-400 font-medium">Connect:</span>
-              <div className="flex space-x-3">
-                <a
-                  href={personalData.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-gray-200 dark:bg-dark-800 hover:bg-primary-500 dark:hover:bg-primary-600 hover:text-white transition-all duration-200 hover:scale-110 hover-glow"
-                  aria-label="GitHub"
-                >
-                  <FiGithub className="w-5 h-5" />
-                </a>
-                <a
-                  href={personalData.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-gray-200 dark:bg-dark-800 hover:bg-primary-500 dark:hover:bg-primary-600 hover:text-white transition-all duration-200 hover:scale-110 hover-glow"
-                  aria-label="LinkedIn"
-                >
-                  <FiLinkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href={`mailto:${personalData.email}`}
-                  className="p-3 rounded-lg bg-gray-200 dark:bg-dark-800 hover:bg-primary-500 dark:hover:bg-primary-600 hover:text-white transition-all duration-200 hover:scale-110 hover-glow"
-                  aria-label="Email"
-                >
-                  <FiMail className="w-5 h-5" />
-                </a>
+            <div className="flex flex-wrap items-center gap-4 animate-fade-up" style={{ animationDelay: '0.5s' }}>
+              <span className="text-sm text-emerald-100/45 font-semibold">Connect</span>
+              <div className="h-px w-8 bg-emerald-300/20" />
+              <div className="flex gap-2">
+                {[
+                  { href: personalData.github, icon: FiGithub, label: 'GitHub' },
+                  { href: personalData.linkedin, icon: FiLinkedin, label: 'LinkedIn' },
+                  { href: `mailto:${personalData.email}`, icon: FiMail, label: 'Email' },
+                ].map(({ href, icon: Icon, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('http') ? '_blank' : undefined}
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 rounded-lg bg-emerald-400/10 border border-emerald-300/15 flex items-center justify-center text-emerald-100/60 hover:text-lime-200 hover:border-emerald-300/50 hover:shadow-[0_0_18px_rgba(52,211,153,0.18)] transition-all hover:-translate-y-0.5"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
               </div>
             </div>
+
           </div>
 
-          {/* Right Column - Visual Element */}
-          {/* Right Column - Visual Element */}
-          <div className="relative animate-fade-in delay-300 flex justify-center lg:justify-end">
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              {/* Profile Image Container */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-[2rem] rotate-6 opacity-20 animate-pulse"></div>
-              <div className="absolute inset-0 bg-white dark:bg-dark-800 rounded-[2rem] shadow-2xl overflow-hidden border-4 border-white dark:border-dark-700 transform hover:scale-[1.02] transition-transform duration-500">
-                <img
-                  src={personalData.profileImage}
-                  alt={personalData.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <div className="lg:col-span-5 animate-fade-up order-first lg:order-none" style={{ animationDelay: '0.25s' }}>
+            <div className="relative mx-auto max-w-xs sm:max-w-sm lg:max-w-md">
+              <div className="absolute -inset-4 rounded-full bg-emerald-400/10 blur-2xl" />
+              <div className="relative rounded-lg border border-emerald-300/20 bg-[#07100b]/85 p-4 sm:p-5 shadow-[0_24px_80px_rgba(0,0,0,0.42)]">
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative">
+                    <div className="absolute -inset-3 rounded-full border border-emerald-300/15" />
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-lime-300 via-emerald-400 to-teal-400 blur-sm opacity-80" />
+                    <img
+                      src={personalData.profileImage}
+                      alt={personalData.name}
+                      className="relative h-36 w-36 rounded-full border-4 border-[#07100b] object-cover object-top shadow-[0_0_36px_rgba(52,211,153,0.32)] sm:h-44 sm:w-44"
+                    />
+                    <span className="absolute bottom-2 right-2 rounded-lg border border-lime-300/40 bg-[#07100b] px-2 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-lime-200 shadow-[0_0_16px_rgba(190,242,100,0.22)]" style={{ fontFamily: 'var(--font-mono)' }}>
+                      Open
+                    </span>
+                  </div>
 
-              {/* Floating Badge 1 */}
-              <div className="absolute -bottom-6 -left-6 bg-white dark:bg-dark-800 p-4 rounded-xl shadow-xl border border-gray-100 dark:border-dark-700 animate-float delay-100">
-                <div className="flex items-center space-x-3">
-                  <div>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">Current Role</p>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white">Full-Stack Web Developer</p>
+                  <div className="mt-7 w-full">
+                    <h2 className="text-2xl font-extrabold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                      {personalData.name}
+                    </h2>
+                    <p className="mt-1 text-sm font-semibold text-emerald-100/65">
+                      {personalData.role}
+                    </p>
+
+                    <div className="mt-5 grid grid-cols-2 gap-2">
+                      <div className="rounded-md border border-emerald-300/15 bg-emerald-400/10 p-4 text-left">
+                        <FiCode className="mb-3 h-5 w-5 text-lime-300" />
+                        <p className="text-sm font-bold text-white">Full-Stack</p>
+                        <p className="mt-1 text-xs text-emerald-100/50">Frontend + backend</p>
+                      </div>
+                      <div className="rounded-md border border-emerald-300/15 bg-emerald-400/10 p-4 text-left">
+                        <FiBriefcase className="mb-3 h-5 w-5 text-emerald-300" />
+                        <p className="text-sm font-bold text-white">Internship</p>
+                        <p className="mt-1 text-xs text-emerald-100/50">Real project work</p>
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Background Decoration */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-200 dark:bg-primary-900/20 rounded-full blur-3xl opacity-30 -z-10 animate-pulse"></div>
           </div>
         </div>
+
       </div>
     </section>
   );

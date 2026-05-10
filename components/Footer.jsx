@@ -1,123 +1,93 @@
-import Link from 'next/link';
-import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+'use client';
+
+import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin, FiArrowUp } from 'react-icons/fi';
 import { personalData } from '@/data/personal';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
-  const socialLinks = [
-    {
-      name: 'GitHub',
-      icon: FiGithub,
-      href: personalData.github,
-    },
-    {
-      name: 'LinkedIn',
-      icon: FiLinkedin,
-      href: personalData.linkedin,
-    },
-    {
-      name: 'Email',
-      icon: FiMail,
-      href: `mailto:${personalData.email}`,
-    },
-  ];
-
-  const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Skills', href: '/skills' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'Experience', href: '/experience' },
-    { name: 'Contact', href: '/contact' },
+  const socials = [
+    { name: 'GitHub', icon: FiGithub, href: personalData.github },
+    { name: 'LinkedIn', icon: FiLinkedin, href: personalData.linkedin },
+    { name: 'Email', icon: FiMail, href: `mailto:${personalData.email}` },
   ];
 
   return (
-    <footer className="bg-gray-50 dark:bg-dark-900 border-t border-gray-200 dark:border-dark-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* About Section */}
+    <footer className="bg-[#050806] border-t border-emerald-300/15">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+
+          {/* Brand */}
           <div>
-            <h3 className="font-display text-2xl font-bold gradient-text mb-4">
-              syam.dev
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Full Stack Developer passionate about building modern web applications 
-              and creating great user experiences.
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-extrabold text-white text-lg" style={{ fontFamily: 'var(--font-display)' }}>
+                syam<span className="text-emerald-300">.dev</span>
+              </span>
+            </div>
+            <p className="text-sm text-emerald-100/50 leading-relaxed mb-5">
+              Full-Stack Developer building modern, performant web applications with a focus on clean code and great user experience.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
+            <div className="flex gap-2">
+              {socials.map((s) => (
                 <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
+                  key={s.name}
+                  href={s.href}
+                  target={s.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-gray-200 dark:bg-dark-800 
-                           hover:bg-primary-500 dark:hover:bg-primary-600 
-                           hover:text-white transition-all duration-200 hover:scale-110"
-                  aria-label={social.name}
+                  aria-label={s.name}
+                  className="w-9 h-9 rounded-lg bg-emerald-400/10 border border-emerald-300/15 flex items-center justify-center text-emerald-100/45 hover:text-lime-200 hover:border-emerald-300/50 transition-all hover:-translate-y-0.5"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <s.icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-display text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-              Quick Links
+          {/* Contact Info */}
+          <div className="md:justify-self-end">
+            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-[0.1em]">
+              Contact
             </h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary-600 
-                             dark:hover:text-primary-400 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
+            <ul className="space-y-3">
+              {[
+                { icon: FiMail, value: personalData.email, href: `mailto:${personalData.email}` },
+                { icon: FiPhone, value: personalData.phone, href: `tel:${personalData.phone}` },
+                { icon: FiMapPin, value: personalData.location, href: null },
+              ].map(({ icon: Icon, value, href }) => (
+                <li key={value} className="flex items-center gap-3">
+                  <Icon className="w-4 h-4 text-emerald-300 flex-shrink-0" />
+                  {href ? (
+                    <a href={href} className="text-sm text-emerald-100/50 hover:text-lime-200 transition-colors">
+                      {value}
+                    </a>
+                  ) : (
+                    <span className="text-sm text-emerald-100/50">{value}</span>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-display text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-              Get In Touch
-            </h4>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                <FiMail className="w-5 h-5 text-primary-500" />
-                <a
-                  href={`mailto:${personalData.email}`}
-                  className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                >
-                  {personalData.email}
-                </a>
-              </li>
-              <li className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                <FiPhone className="w-5 h-5 text-primary-500" />
-                <span>{personalData.phone}</span>
-              </li>
-              <li className="flex items-center space-x-3 text-gray-600 dark:text-gray-400">
-                <FiMapPin className="w-5 h-5 text-primary-500" />
-                <span>{personalData.location}</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-gray-200 dark:border-dark-800">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-600 dark:text-gray-400 text-sm text-center md:text-left">
-              © {currentYear} {personalData.name}. All rights reserved.
-            </p>
-          </div>
+        {/* Bottom */}
+        <div className="pt-8 border-t border-emerald-300/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-emerald-100/35">
+            © {year} {personalData.name}. All rights reserved.
+          </p>
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center gap-1.5 text-sm text-emerald-100/35 hover:text-lime-200 transition-colors"
+          >
+            Back to top <FiArrowUp className="w-3.5 h-3.5" />
+          </a>
         </div>
+
       </div>
     </footer>
   );

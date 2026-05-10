@@ -12,14 +12,14 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: colors.sky,
-                accent: colors.violet,
-                dark: colors.slate,
-                border: colors.gray[200],
+                primary: colors.emerald,
+                accent: colors.lime,
+                dark: colors.neutral,
+                border: colors.emerald[900],
             },
             fontFamily: {
-                display: ['var(--font-outfit)', 'sans-serif'],
-                sans: ['var(--font-manrope)', 'sans-serif'],
+                display: ['var(--font-display)', 'sans-serif'],
+                sans: ['var(--font-dm)', 'sans-serif'],
                 mono: ['var(--font-mono)', 'monospace'],
             },
             animation: {
