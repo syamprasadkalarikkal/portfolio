@@ -47,6 +47,11 @@ export const skillsData = {
           name: "Authentication",
           level: "Intermediate",
           description: "JWT, Session Management, User Auth Flow"
+        },
+        {
+          name: "REST API",
+          level: "Intermediate",
+          description: "GET, POST, PUT, DELETE"
         }
       ]
     },
@@ -67,6 +72,11 @@ export const skillsData = {
           name: "Responsive Design",
           level: "Advanced",
           description: "Mobile-first approach, Cross-browser compatibility"
+        },
+        {
+          name: "Docker",
+          level: "Beginner",
+          description: "Containerization, Docker Images, Docker Compose"
         }
       ]
     },

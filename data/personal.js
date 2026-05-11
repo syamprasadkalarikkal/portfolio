@@ -2,7 +2,7 @@ export const personalData = {
   name: "Syam Prasak K",
   role: "Full-Stack Developer",
   tagline: "",
-  email: "syamaalu10@gmail.com",
+  email: "ecomorph10@gmail.com",
   phone: "+91 9567342344",
   location: "Malappuram, Kerala, India",
   github: "https://github.com/syamprasadkalarikkal",
