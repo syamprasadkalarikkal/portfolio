@@ -3,14 +3,24 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Syam Prasak K - Junior Software Developer',
-  description: 'Portfolio of Syam Prasak K, a Junior Software Developer specializing in React, Next.js, and modern web technologies. BCA graduate from Calicut University with internship experience at 9Commerce Technologies LLP.',
-  keywords: 'Syam Prasak, Software Developer, React Developer, Next.js, Full Stack Developer, Web Developer, BCA Graduate, Portfolio',
-  authors: [{ name: 'Syam Prasak K' }],
+  title: 'Syam Prasad - Full Stack Developer',
+  description: 'Portfolio of Syam Prasad, full stack developer building AI powered web applications.',
+  keywords: 'Syam Prasad, React developer, Next.js developer, AI web apps, Full Stack Developer, Web Developer, Portfolio',
+  authors: [{ name: 'Syam Prasad' }],
+  robots: 'index, follow',
   openGraph: {
-    title: 'Syam Prasak K - Junior Software Developer',
-    description: 'Portfolio showcasing projects in React, Next.js, and full-stack development',
+    title: 'Syam Prasad Portfolio',
+    description: 'Full Stack Developer building AI powered web applications.',
     type: 'website',
+    url: 'https://syamprasad.xyz',
+    images: [
+      {
+        url: 'https://syamprasad.xyz/preview.png',
+        width: 1200,
+        height: 630,
+        alt: 'Syam Prasad Portfolio Preview',
+      },
+    ],
   },
 };
 
