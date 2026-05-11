@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
               url: 'https://syamprasad.xyz',
               jobTitle: 'Full Stack Developer',
               sameAs: [
-                'https://www.linkedin.com/in/syam-prasad-568849375?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BN0Nyt%2FAAS3u3sWhMeF%2FM5g%3D%3D5',
+                'https://www.linkedin.com/in/syam-prasad-k-568849375 ',
                 'https://github.com/syamprasadkalarikkal'
               ],
             }),
