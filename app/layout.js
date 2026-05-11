@@ -1,4 +1,5 @@
 import './globals.css';
+import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -27,6 +28,25 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <Script
+          id="schema-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Syam Prasad',
+              url: 'https://syamprasad.xyz',
+              jobTitle: 'Full Stack Developer',
+              sameAs: [
+                'https://www.linkedin.com/in/syam-prasad-568849375?lipi=urn%3Ali%3Apage%3Ad_flagship3_messaging_conversation_detail%3BN0Nyt%2FAAS3u3sWhMeF%2FM5g%3D%3D5',
+                'https://github.com/syamprasadkalarikkal'
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <Navbar />
         <main className="min-h-screen">
