@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Syam Prasad - Full Stack Developer',
+  title: 'Syam Prasad K | Full Stack Developer',
   description: 'Portfolio of Syam Prasad, full stack developer building AI powered web applications.',
   keywords: 'Syam Prasad, React developer, Next.js developer, AI web apps, Full Stack Developer, Web Developer, Portfolio',
   authors: [{ name: 'Syam Prasad' }],
