@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { FiExternalLink, FiGithub, FiArrowUpRight, FiShoppingBag, FiCalendar, FiTerminal } from 'react-icons/fi';
 
 const coverStyles = {
@@ -27,36 +29,41 @@ const ProjectCover = ({ project }) => {
 
   return (
     <div className={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${style.shell}`}>
-      <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(74,222,128,.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(74,222,128,.12)_1px,transparent_1px)] [background-size:28px_28px]" />
-      <div className="relative h-full p-5 sm:p-6 flex flex-col justify-between">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <span className={`h-2.5 w-2.5 rounded-full ${style.accent}`} />
-            <span className="text-xs font-bold uppercase tracking-[0.14em] text-white/65">
-              {project.cover?.label}
-            </span>
-          </div>
-          <div className="rounded-lg border border-emerald-300/20 bg-emerald-400/10 p-2 text-emerald-100 backdrop-blur">
-            <Icon className="h-5 w-5" />
-          </div>
-        </div>
+      {project.cover?.image ? (
+        <Image
+          src={project.cover.image}
+          alt={`${project.title} project preview`}
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.035]"
+          priority={project.id === 1}
+        />
+      ) : (
+        <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(74,222,128,.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(74,222,128,.12)_1px,transparent_1px)] [background-size:28px_28px]" />
+      )}
 
-        <div>
-          <p className={`mb-2 text-xs font-semibold ${style.text}`}>
-            {project.cover?.metric}
-          </p>
-          <h4 className="max-w-xs text-2xl sm:text-3xl font-extrabold leading-tight text-white" style={{ fontFamily: 'var(--font-display)' }}>
-            {project.cover?.title}
-          </h4>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050806]/85 via-[#050806]/10 to-transparent" />
+      <div className="absolute left-3 right-3 top-3 flex items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2 rounded-md border border-white/10 bg-[#050806]/70 px-2.5 py-1.5 backdrop-blur-md">
+          <span className={`h-2 w-2 flex-shrink-0 rounded-full ${style.accent}`} />
+          <span className="truncate text-[10px] font-bold uppercase tracking-[0.12em] text-white/75">
+            {project.cover?.label}
+          </span>
         </div>
+        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border border-white/10 bg-[#050806]/70 text-emerald-100 backdrop-blur-md">
+          <Icon className="h-4 w-4" />
+        </div>
+      </div>
 
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.slice(0, 3).map((tech) => (
-            <span key={tech} className="rounded-md border border-emerald-300/15 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-100/80 backdrop-blur">
-              {tech}
-            </span>
-          ))}
-        </div>
+      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center gap-1.5">
+        <span className={`rounded-md border border-white/10 bg-[#050806]/75 px-2.5 py-1 text-[11px] font-semibold backdrop-blur-md ${style.text}`}>
+          {project.cover?.metric}
+        </span>
+        {project.technologies.slice(0, 1).map((tech) => (
+          <span key={tech} className="rounded-md border border-white/10 bg-[#050806]/70 px-2.5 py-1 text-[11px] font-semibold text-emerald-50/80 backdrop-blur-md">
+            {tech}
+          </span>
+        ))}
       </div>
     </div>
   );
@@ -70,8 +77,8 @@ const ProjectCard = ({ project, index }) => {
   };
 
   return (
-    <div
-      className="group relative flex flex-col h-full bg-[#07100b]/90 rounded-lg border border-emerald-300/15 hover:border-emerald-300/55 shadow-[0_16px_45px_rgba(0,0,0,0.24)] hover:shadow-[0_0_32px_rgba(52,211,153,0.16)] transition-all duration-300 hover:-translate-y-1 overflow-hidden animate-slide-up"
+    <article
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-emerald-300/15 bg-[#07100b]/90 shadow-[0_12px_32px_rgba(0,0,0,0.22)] transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/55 hover:shadow-[0_0_28px_rgba(52,211,153,0.14)] animate-slide-up"
       style={{ animationDelay: `${index * 0.12}s` }}
     >
       {/* Top accent line */}
@@ -79,47 +86,52 @@ const ProjectCard = ({ project, index }) => {
 
       <ProjectCover project={project} />
 
-      <div className="flex flex-col h-full p-5 sm:p-7">
+      <div className="flex h-full flex-col p-4">
 
         {/* Header */}
-        <div className="flex items-start justify-between gap-4 mb-5">
-          <div className="flex-1">
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${typeStyle[project.type] || typeStyle['Academic Project']}`}>
+        <div className="mb-3 flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <div className="mb-2 flex flex-wrap items-center gap-2">
+              <span className={`rounded-full px-2.5 py-1 text-[11px] font-semibold ${typeStyle[project.type] || typeStyle['Academic Project']}`}>
                 {project.type}
               </span>
               <span className="text-xs text-emerald-100/40 font-mono">
                 {project.duration}
               </span>
             </div>
-            <h3 className="text-xl font-extrabold text-white group-hover:text-lime-200 transition-colors leading-snug" style={{ fontFamily: 'var(--font-display)' }}>
+            <h3 className="text-base font-extrabold leading-snug text-white transition-colors group-hover:text-lime-200 sm:text-lg" style={{ fontFamily: 'var(--font-display)' }}>
               {project.title}
             </h3>
           </div>
 
-          {/* External link icon */}
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Open ${project.title}`}
-            className="flex-shrink-0 w-9 h-9 rounded-lg border border-emerald-300/15 flex items-center justify-center text-emerald-100/45 hover:text-lime-200 hover:border-emerald-300/50 transition-all hover:-translate-y-0.5"
+          <Link
+            href={`/projects/${project.slug}`}
+            aria-label={`View ${project.title} details`}
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-emerald-300/15 text-emerald-100/45 transition-all hover:-translate-y-0.5 hover:border-emerald-300/50 hover:text-lime-200"
           >
             <FiArrowUpRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-emerald-100/65 leading-relaxed mb-6 flex-1">
+        <p
+          className="mb-4 text-sm leading-6 text-emerald-100/65"
+          style={{
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
           {project.description}
         </p>
 
         {/* Key Features */}
-        <div className="mb-6 p-4 bg-black/25 rounded-lg border border-emerald-300/15">
-          <p className="text-[10px] font-bold text-emerald-300/50 uppercase tracking-[0.12em] mb-3">Highlights</p>
-          <ul className="space-y-2">
-            {project.keyFeatures.slice(0, 3).map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-sm text-emerald-100/75">
+        <div className="mb-4 rounded-lg border border-emerald-300/15 bg-black/25 p-3">
+          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-300/50">Highlights</p>
+          <ul className="space-y-1.5">
+            {project.keyFeatures.slice(0, 2).map((feature, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-[13px] leading-5 text-emerald-100/75">
                 <span className="mt-1.5 w-1 h-1 rounded-full bg-lime-300 flex-shrink-0" />
                 {feature}
               </li>
@@ -128,49 +140,56 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         {/* Tech Stack */}
-        <div className="mb-6">
-          <p className="text-[10px] font-bold text-emerald-300/50 uppercase tracking-[0.12em] mb-3">Built With</p>
-          <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, 5).map((tech, idx) => (
+        <div className="mb-4">
+          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-300/50">Built With</p>
+          <div className="flex flex-wrap gap-1.5">
+            {project.technologies.slice(0, 4).map((tech, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 text-xs font-medium bg-emerald-400/10 text-emerald-100/70 rounded-md border border-emerald-300/15"
+                className="rounded-md border border-emerald-300/15 bg-emerald-400/10 px-2 py-1 text-[11px] font-medium text-emerald-100/70"
               >
                 {tech}
               </span>
             ))}
-            {project.technologies.length > 5 && (
-              <span className="px-2.5 py-1 text-xs text-emerald-100/40 font-medium self-center">
-                +{project.technologies.length - 5}
+            {project.technologies.length > 4 && (
+              <span className="rounded-md px-2 py-1 text-[11px] font-semibold text-emerald-100/45">
+                +{project.technologies.length - 4}
               </span>
             )}
           </div>
         </div>
 
         {/* Action Links */}
-        <div className="flex flex-col sm:flex-row gap-3 pt-5 border-t border-emerald-300/15 mt-auto">
+        <div className="mt-auto grid grid-cols-[1fr_auto_auto] gap-2 border-t border-emerald-300/15 pt-4">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="flex min-h-10 items-center justify-center gap-2 rounded-lg bg-emerald-400 text-sm font-semibold text-[#041108] shadow-[0_0_18px_rgba(52,211,153,0.18)] transition-all hover:bg-lime-300"
+          >
+            Details
+            <FiArrowUpRight className="h-4 w-4" />
+          </Link>
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold bg-emerald-400/10 text-emerald-100 border border-emerald-300/15 hover:bg-emerald-400/15 transition-all"
+            aria-label={`${project.title} source code`}
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-300/15 bg-emerald-400/10 text-emerald-100 transition-all hover:bg-emerald-400/15"
           >
             <FiGithub className="w-4 h-4" />
-            Source
           </a>
           <a
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold bg-emerald-400 text-[#041108] hover:bg-lime-300 transition-all shadow-[0_0_20px_rgba(52,211,153,0.22)]"
+            aria-label={`${project.title} live demo`}
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-300/15 bg-emerald-400/10 text-emerald-100 transition-all hover:bg-emerald-400/15"
           >
-            Live Demo
             <FiExternalLink className="w-4 h-4" />
           </a>
         </div>
 
       </div>
-    </div>
+    </article>
   );
 };
 

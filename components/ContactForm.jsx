@@ -44,17 +44,17 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="card p-6 sm:p-8 h-full">
-      <h3 className="text-xl font-extrabold text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>
-        Send a Message
+    <div className="card h-full p-5 sm:p-8">
+      <h3 className="mb-4 text-lg font-extrabold text-white sm:mb-6 sm:text-xl" style={{ fontFamily: 'var(--font-display)' }}>
+        Tell Me About It
       </h3>
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
 
         {/* Name + Email Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {fields.slice(0, 2).map(({ id, label, type, placeholder }) => (
             <div key={id}>
-              <label htmlFor={id} className="block text-xs font-semibold text-emerald-300/55 uppercase tracking-wide mb-2">
+              <label htmlFor={id} className="mb-2 block text-xs font-semibold uppercase tracking-wide text-emerald-300/55">
                 {label}
               </label>
               <input
@@ -73,7 +73,7 @@ const ContactForm = () => {
 
         {/* Subject */}
         <div>
-          <label htmlFor="subject" className="block text-xs font-semibold text-emerald-300/55 uppercase tracking-wide mb-2">
+          <label htmlFor="subject" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-emerald-300/55">
             Subject
           </label>
           <input
@@ -90,7 +90,7 @@ const ContactForm = () => {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="block text-xs font-semibold text-emerald-300/55 uppercase tracking-wide mb-2">
+          <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-emerald-300/55">
             Message
           </label>
           <textarea
@@ -99,7 +99,7 @@ const ContactForm = () => {
             value={formData.message}
             onChange={handleChange}
             required
-            rows={6}
+            rows={5}
             className="textarea"
             placeholder="Tell me about your project or opportunity..."
           />
@@ -123,7 +123,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full btn btn-primary py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="btn btn-primary w-full py-3 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? (
             <>

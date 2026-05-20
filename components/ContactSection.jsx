@@ -32,31 +32,31 @@ const ContactSection = () => {
       <div className="section-container">
 
         {/* Header */}
-        <div className="mb-10">
-          <p className="section-label">Let's Connect</p>
+        <div className="mx-auto mb-7 max-w-2xl text-center sm:mb-10 lg:mx-0 lg:text-left">
+          <p className="section-label">Start a Conversation</p>
           <h1 className="section-title">
-            Get In <span>Touch</span>
+            Let's Build a <span>Project</span>
           </h1>
-          <p className="section-subtitle max-w-2xl">
-            Open to opportunities, collaborations, or just a conversation about technology — reach out anytime.
+          <p className="section-subtitle">
+            Have a role, freelance idea, or product feature in mind? Send the details and I'll reply with a clear next step.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-5 lg:gap-8">
 
           {/* Left Panel */}
-          <div className="lg:col-span-2 flex flex-col gap-5">
+          <div className="lg:col-span-2 flex flex-col gap-4 sm:gap-5">
 
             {/* Contact Methods */}
-            <div className="space-y-3">
+            <div className="space-y-2.5 sm:space-y-3">
               {contactMethods.map((method, i) => (
                 <a
                   key={method.title}
                   href={method.href}
-                  className="flex items-center gap-4 p-4 card card-hover"
+                  className="card card-hover flex items-center gap-3 p-3.5 sm:gap-4 sm:p-4"
                   style={{ animationDelay: `${i * 0.08}s` }}
                 >
-                  <div className={`w-10 h-10 rounded-lg border flex items-center justify-center flex-shrink-0 ${method.accent}`}>
+                  <div className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border sm:h-10 sm:w-10 ${method.accent}`}>
                     <method.icon className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
@@ -68,8 +68,8 @@ const ContactSection = () => {
             </div>
 
             {/* Social */}
-            <div className="card p-5">
-              <p className="text-xs font-bold text-emerald-300/50 uppercase tracking-[0.12em] mb-4">Social</p>
+            <div className="card p-4 sm:p-5">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-emerald-300/50 sm:mb-4">Social</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { icon: FiGithub, name: 'GitHub', href: personalData.github },
@@ -80,7 +80,7 @@ const ContactSection = () => {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 p-3 rounded-lg bg-emerald-400/10 border border-emerald-300/15 text-emerald-100/75 hover:text-lime-200 hover:border-emerald-300/50 transition-all group"
+                    className="group flex items-center justify-center gap-2.5 rounded-lg border border-emerald-300/15 bg-emerald-400/10 p-3 text-emerald-100/75 transition-all hover:border-emerald-300/50 hover:text-lime-200 sm:justify-start"
                   >
                     <s.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
                     <span className="text-sm font-semibold">{s.name}</span>
@@ -90,10 +90,10 @@ const ContactSection = () => {
             </div>
 
             {/* Availability */}
-            <div className="card p-5 flex items-start gap-4">
+            <div className="card flex items-start gap-3 p-4 sm:gap-4 sm:p-5">
               <div className="mt-1 w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] flex-shrink-0 animate-pulse" />
               <div>
-                <p className="font-bold text-white text-sm mb-1">Available for Work</p>
+                <p className="font-bold text-white text-sm mb-1">Available for Projects</p>
                 <p className="text-xs text-emerald-100/50 leading-relaxed">
                   Currently open to full-time roles, freelance projects, and internship opportunities.
                   I respond promptly to all messages.
@@ -108,16 +108,6 @@ const ContactSection = () => {
             <ContactForm />
           </div>
 
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="mt-10 rounded-lg border border-emerald-300/15 bg-[#07100b]/90 p-6 sm:p-10 text-center animate-slide-up delay-400">
-          <h3 className="text-2xl font-extrabold text-white mb-3" style={{ fontFamily: 'var(--font-display)' }}>
-            Let's Build Something Great Together
-          </h3>
-          <p className="text-emerald-100/60 max-w-xl mx-auto text-sm leading-relaxed">
-            Whether it's a startup idea, a freelance project, or a full-time position — I'm always excited to explore meaningful work with driven teams and individuals.
-          </p>
         </div>
 
       </div>

@@ -59,24 +59,24 @@ const SkillCard = ({ skill, index }) => {
 
   return (
     <div
-      className="group relative bg-[#07100b]/90 rounded-lg p-5 border border-emerald-300/15 hover:border-emerald-300/55 shadow-[0_16px_45px_rgba(0,0,0,0.24)] hover:shadow-[0_0_28px_rgba(52,211,153,0.16)] transition-all duration-300 hover:-translate-y-0.5 animate-scale-in overflow-hidden"
+      className="group relative overflow-hidden rounded-lg border border-emerald-300/15 bg-black/20 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-300/55 hover:bg-emerald-400/10 hover:shadow-[0_0_24px_rgba(52,211,153,0.12)] animate-scale-in sm:p-4"
       style={{ animationDelay: `${index * 0.07}s` }}
     >
       {/* Subtle hover bg */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/10 to-lime-300/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
 
-      <div className="relative flex items-start gap-4">
+      <div className="relative flex items-center gap-2.5 sm:items-start sm:gap-3">
         {/* Icon */}
-        <div className="flex-shrink-0 w-12 h-12 bg-emerald-400/10 group-hover:bg-gradient-to-br group-hover:from-lime-300 group-hover:to-emerald-400 rounded-lg flex items-center justify-center transition-all duration-300 shadow-sm border border-emerald-300/10">
-          <Icon className="w-5 h-5 text-emerald-200/70 group-hover:text-[#041108] transition-colors duration-300" />
+        <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg border border-emerald-300/10 bg-emerald-400/10 shadow-sm transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-lime-300 group-hover:to-emerald-400 sm:h-11 sm:w-11">
+          <Icon className="h-4 w-4 text-emerald-200/70 transition-colors duration-300 group-hover:text-[#041108] sm:h-5 sm:w-5" />
         </div>
 
         {/* Text */}
-        <div className="flex-1 min-w-0">
-          <h3 className="font-bold text-white text-[15px] mb-1 group-hover:text-lime-200 transition-colors" style={{ fontFamily: 'var(--font-display)' }}>
+        <div className="min-w-0 flex-1">
+          <h3 className="truncate text-[13px] font-bold text-white transition-colors group-hover:text-lime-200 sm:mb-1 sm:text-[15px]" style={{ fontFamily: 'var(--font-display)' }}>
             {skill.name}
           </h3>
-          <p className="text-xs text-emerald-100/50 leading-relaxed">
+          <p className="hidden text-xs leading-relaxed text-emerald-100/50 sm:block">
             {skill.description}
           </p>
         </div>

@@ -10,30 +10,30 @@ const ProjectsSection = () => {
       <div className="section-container">
 
         {/* Header */}
-        <div className="mb-10">
+        <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
           <p className="section-label">What I've Built</p>
           <h1 className="section-title">
             My <span>Projects</span>
           </h1>
-          <p className="section-subtitle max-w-2xl">
+          <p className="section-subtitle">
             Real-world applications spanning freelance work, college initiatives, and academic builds.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
           {projectsData.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </div>
 
         {/* CTA Banner */}
-        <div className="mt-10 rounded-lg bg-[#07100b] border border-emerald-300/15 p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 animate-slide-up delay-400 shadow-[0_0_35px_rgba(52,211,153,0.08)]">
-          <div>
-            <h3 className="text-2xl font-extrabold text-white mb-2" style={{ fontFamily: 'var(--font-display)' }}>
+        <div className="mx-auto mt-8 flex max-w-5xl flex-col items-stretch justify-between gap-4 rounded-lg border border-emerald-300/15 bg-[#07100b] p-5 shadow-[0_0_35px_rgba(52,211,153,0.08)] animate-slide-up delay-400 sm:p-6 md:flex-row md:items-center">
+          <div className="text-center md:text-left">
+            <h3 className="mb-2 text-xl font-extrabold text-white sm:text-2xl" style={{ fontFamily: 'var(--font-display)' }}>
               Have a project in mind?
             </h3>
-            <p className="text-emerald-100/60 text-sm">
+            <p className="text-sm leading-relaxed text-emerald-100/60">
               I'm open to new collaborations and exciting challenges.
             </p>
           </div>
@@ -43,7 +43,7 @@ const ProjectsSection = () => {
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="flex-shrink-0 btn btn-accent px-7 py-3 text-sm w-full sm:w-auto"
+            className="btn btn-accent w-full flex-shrink-0 px-6 py-3 text-sm sm:w-auto"
           >
             Let's Talk
             <FiArrowRight className="h-4 w-4" />

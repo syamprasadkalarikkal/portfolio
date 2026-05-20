@@ -56,7 +56,7 @@ export const educationData = {
   location: "Kerala, India",
   duration: "2023 - 2026",
   graduation: "March 2026",
-  status: "Final Year (Currently Pursuing)",
+  status: "Graduated",
   
   relevantCoursework: [
     "Data Structures & Algorithms",

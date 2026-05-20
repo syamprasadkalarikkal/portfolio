@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { FiMenu, FiX, FiDownload } from 'react-icons/fi';
 import MascotIcon from '@/components/MascotIcon';
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -52,6 +54,13 @@ const Navbar = () => {
     e.preventDefault();
     const targetId = href.substring(1);
     const el = document.getElementById(targetId);
+
+    if (pathname !== '/' || !el) {
+      window.location.href = `/${href}`;
+      setIsOpen(false);
+      return;
+    }
+
     if (el) {
       const offset = el.getBoundingClientRect().top + window.pageYOffset - 80;
       window.scrollTo({ top: offset, behavior: 'smooth' });
@@ -67,7 +76,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link href="/" className="group flex items-center gap-2" aria-label="Syam portfolio home">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl border border-emerald-300/30 bg-emerald-400/10 p-1 shadow-[0_0_18px_rgba(52,211,153,0.16)]">
+            <span className="grid h-10 w-10 place-items-center rounded-lg border border-emerald-300/30 bg-emerald-400/10 p-1 shadow-[0_0_18px_rgba(52,211,153,0.16)]">
               <MascotIcon />
             </span>
             <span className="font-extrabold text-white text-lg leading-none" style={{ fontFamily: 'var(--font-display)' }}>

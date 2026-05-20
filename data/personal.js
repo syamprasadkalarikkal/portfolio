@@ -13,7 +13,7 @@ export const personalData = {
     degree: "Bachelor of Computer Applications (BCA)",
     institution: "Calicut University",
     graduation: "March 2026",
-    status: "Final Year"
+    status: "Graduated"
   },
 
   about: {
