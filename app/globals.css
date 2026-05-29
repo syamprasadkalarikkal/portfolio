@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&family=JetBrains+Mono:wght@400;500;600&family=Rajdhani:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-display: 'Bungee', sans-serif;
+  --font-display: 'Outfit', sans-serif;
   --font-syne: var(--font-display);
-  --font-dm: 'Rajdhani', sans-serif;
+  --font-dm: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --surface-light: 5 8 6;
-  --surface-dark: 5 8 6;
+  --surface-light: 255 255 255;
+  --surface-dark: 248 250 249;
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-emerald-100/50;
   }
 
   body {
-    @apply bg-[#050806] text-emerald-50;
+    @apply bg-[#f8faf8] text-slate-700;
     @apply transition-colors duration-300;
     font-family: var(--font-dm);
     text-rendering: optimizeLegibility;
@@ -38,7 +38,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: 0;
+    letter-spacing: -0.02em;
     overflow-wrap: anywhere;
   }
 }
@@ -55,108 +55,108 @@
 
   .section-label {
     @apply inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold tracking-[0.14em] sm:tracking-[0.16em] uppercase;
-    @apply text-emerald-300 mb-2 sm:mb-3;
+    @apply text-emerald-600 mb-2 sm:mb-3;
     font-family: var(--font-mono);
   }
 
   .section-label::before {
     content: '';
-    @apply block w-5 sm:w-7 h-px bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.75)];
+    @apply block w-5 sm:w-7 h-px bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)];
   }
 
   .section-title {
     font-family: var(--font-display);
     @apply text-[1.65rem] sm:text-4xl lg:text-5xl font-extrabold mb-3 sm:mb-4 leading-tight;
-    @apply text-white;
+    @apply text-slate-900;
   }
 
   .section-title span {
-    @apply bg-gradient-to-r from-lime-300 via-emerald-300 to-teal-300 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-emerald-600 via-teal-600 to-lime-600 bg-clip-text text-transparent;
   }
 
   .section-subtitle {
-    @apply text-sm sm:text-base md:text-lg text-emerald-100/70 leading-6 sm:leading-relaxed;
+    @apply text-sm sm:text-base md:text-lg text-slate-500 leading-6 sm:leading-relaxed;
   }
 
   /* Cards */
   .card {
-    @apply bg-[#07100b]/90;
-    @apply rounded-lg;
-    @apply border border-emerald-400/15;
-    @apply shadow-[0_16px_45px_rgba(0,0,0,0.28)];
+    @apply bg-white;
+    @apply rounded-xl;
+    @apply border border-emerald-100/60;
+    @apply shadow-[0_8px_30px_rgb(0,0,0,0.02)];
     @apply transition-all duration-300;
   }
 
   .card-hover {
-    @apply hover:-translate-y-1 hover:border-emerald-300/60 hover:shadow-[0_0_30px_rgba(16,185,129,0.18)];
+    @apply hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_20px_40px_rgba(16,185,129,0.06)];
   }
 
   /* Buttons */
   .btn {
     @apply inline-flex min-h-10 sm:min-h-11 items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg font-semibold text-sm;
     @apply transition-all duration-200;
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-[#050806];
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-white;
     font-family: var(--font-display);
   }
 
   .btn-primary {
-    @apply bg-emerald-400 text-[#041108];
-    @apply hover:bg-lime-300;
-    @apply shadow-[0_0_22px_rgba(52,211,153,0.28)] hover:shadow-[0_0_32px_rgba(190,242,100,0.35)];
+    @apply bg-emerald-600 text-white;
+    @apply hover:bg-emerald-700;
+    @apply shadow-[0_4px_14px_rgba(16,185,129,0.25)] hover:shadow-[0_6px_20px_rgba(16,185,129,0.35)];
   }
 
   .btn-accent {
-    @apply bg-lime-300 text-[#041108];
-    @apply hover:bg-emerald-300;
-    @apply shadow-[0_0_22px_rgba(190,242,100,0.26)] hover:shadow-[0_0_32px_rgba(52,211,153,0.32)];
+    @apply bg-lime-500 text-emerald-950;
+    @apply hover:bg-lime-600;
+    @apply shadow-[0_4px_14px_rgba(132,204,22,0.25)] hover:shadow-[0_6px_20px_rgba(132,204,22,0.35)];
   }
 
   .btn-secondary {
-    @apply bg-emerald-400/10 text-emerald-100;
-    @apply border border-emerald-300/20;
-    @apply hover:bg-emerald-400/15 hover:border-emerald-300/50;
+    @apply bg-emerald-50 text-emerald-700;
+    @apply border border-emerald-100/60;
+    @apply hover:bg-emerald-100/50 hover:border-emerald-200;
   }
 
   .btn-outline {
-    @apply border border-emerald-300/25 text-emerald-100;
-    @apply hover:border-lime-300 hover:bg-lime-300 hover:text-[#041108];
+    @apply border border-emerald-200 text-emerald-800 bg-white;
+    @apply hover:border-emerald-600 hover:bg-emerald-600 hover:text-white;
   }
 
   /* Inputs */
   .input {
     @apply w-full px-4 py-3 rounded-lg text-sm;
-    @apply bg-black/30;
-    @apply border border-emerald-300/15;
-    @apply text-emerald-50;
-    @apply placeholder-emerald-100/30;
-    @apply focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/10;
+    @apply bg-slate-50;
+    @apply border border-slate-200;
+    @apply text-slate-800;
+    @apply placeholder-slate-400;
+    @apply focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-500/10;
     @apply transition-all duration-200 outline-none;
     font-family: var(--font-dm);
   }
 
   .textarea {
     @apply w-full px-4 py-3 rounded-lg text-sm;
-    @apply bg-black/30;
-    @apply border border-emerald-300/15;
-    @apply text-emerald-50;
-    @apply placeholder-emerald-100/30;
-    @apply focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/10;
+    @apply bg-slate-50;
+    @apply border border-slate-200;
+    @apply text-slate-800;
+    @apply placeholder-slate-400;
+    @apply focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-500/10;
     @apply transition-all duration-200 outline-none resize-none;
     font-family: var(--font-dm);
   }
 
   /* Gradient Background */
   .gradient-bg {
-    @apply bg-[#050806];
+    @apply bg-[#f8faf8];
     background-image:
-      linear-gradient(to right, rgba(52, 211, 153, 0.09) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(52, 211, 153, 0.07) 1px, transparent 1px),
-      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.13), transparent 36rem);
+      linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+      radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08), transparent 36rem);
     background-size: 34px 34px, 34px 34px, auto;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-lime-300 via-emerald-300 to-teal-300;
+    @apply bg-gradient-to-r from-emerald-600 via-teal-600 to-lime-600;
     @apply bg-clip-text text-transparent;
     @apply bg-[length:200%_auto];
     @apply animate-gradient;
@@ -164,26 +164,26 @@
 
   /* Glass Effect */
   .glass {
-    @apply bg-[#061009]/85;
+    @apply bg-white/80;
     @apply backdrop-blur-xl;
-    @apply border border-emerald-300/15;
+    @apply border border-emerald-100/50;
   }
 
   .hover-glow {
     @apply transition-all duration-300;
-    @apply hover:shadow-[0_0_20px_rgba(52,211,153,0.25)];
+    @apply hover:shadow-[0_10px_30px_rgba(16,185,129,0.08)];
   }
 
   /* Tag/Badge */
   .tag {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
-    @apply bg-emerald-400/10 text-emerald-100/80;
-    @apply border border-emerald-300/15;
+    @apply bg-emerald-50 text-emerald-700;
+    @apply border border-emerald-100/50;
   }
 
   .tag-primary {
-    @apply bg-lime-300/10 text-lime-200;
-    @apply border-lime-300/25;
+    @apply bg-lime-50 text-lime-800;
+    @apply border-lime-200;
   }
 
   .emoji-token {

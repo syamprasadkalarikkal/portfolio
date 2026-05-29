@@ -9,21 +9,21 @@ const ContactSection = () => {
       title: 'Email',
       value: personalData.email,
       href: `mailto:${personalData.email}`,
-      accent: 'bg-emerald-400/10 text-emerald-300 border-emerald-300/25',
+      accent: 'bg-emerald-50 text-emerald-600 border-emerald-200',
     },
     {
       icon: FiPhone,
       title: 'Phone',
       value: personalData.phone,
       href: `tel:${personalData.phone}`,
-      accent: 'bg-lime-300/10 text-lime-300 border-lime-300/25',
+      accent: 'bg-teal-50 text-teal-600 border-teal-200',
     },
     {
       icon: FiMapPin,
       title: 'Location',
       value: personalData.location,
       href: '#',
-      accent: 'bg-teal-300/10 text-teal-200 border-teal-300/25',
+      accent: 'bg-sky-50 text-sky-600 border-sky-200',
     },
   ];
 
@@ -60,8 +60,8 @@ const ContactSection = () => {
                     <method.icon className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold text-emerald-300/45 uppercase tracking-wide mb-0.5">{method.title}</p>
-                    <p className="text-sm font-semibold text-white truncate">{method.value}</p>
+                    <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">{method.title}</p>
+                    <p className="text-sm font-semibold text-slate-800 truncate">{method.value}</p>
                   </div>
                 </a>
               ))}
@@ -69,7 +69,7 @@ const ContactSection = () => {
 
             {/* Social */}
             <div className="card p-4 sm:p-5">
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-emerald-300/50 sm:mb-4">Social</p>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-slate-600 sm:mb-4">Social</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { icon: FiGithub, name: 'GitHub', href: personalData.github },
@@ -80,7 +80,7 @@ const ContactSection = () => {
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-center gap-2.5 rounded-lg border border-emerald-300/15 bg-emerald-400/10 p-3 text-emerald-100/75 transition-all hover:border-emerald-300/50 hover:text-lime-200 sm:justify-start"
+                    className="group flex items-center justify-center gap-2.5 rounded-lg border border-emerald-100 bg-emerald-50 p-3 text-emerald-700 transition-all hover:border-emerald-300 hover:bg-emerald-100 sm:justify-start"
                   >
                     <s.icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
                     <span className="text-sm font-semibold">{s.name}</span>
@@ -91,10 +91,10 @@ const ContactSection = () => {
 
             {/* Availability */}
             <div className="card flex items-start gap-3 p-4 sm:gap-4 sm:p-5">
-              <div className="mt-1 w-3 h-3 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] flex-shrink-0 animate-pulse" />
+              <div className="mt-1 w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] flex-shrink-0 animate-pulse" />
               <div>
-                <p className="font-bold text-white text-sm mb-1">Available for Projects</p>
-                <p className="text-xs text-emerald-100/50 leading-relaxed">
+                <p className="font-bold text-slate-800 text-sm mb-1">Available for Projects</p>
+                <p className="text-xs text-slate-500 leading-relaxed">
                   Currently open to full-time roles, freelance projects, and internship opportunities.
                   I respond promptly to all messages.
                 </p>

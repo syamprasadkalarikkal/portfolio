@@ -5,8 +5,8 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 
 export const metadata = {
-  title: 'Syam Prasak K - Full Stack Developer',
-  description: 'Portfolio of Syam Prasak K, a Junior Software Developer passionate about creating modern web applications.',
+  title: 'Syam Prasad K - Full Stack Developer',
+  description: 'Portfolio of Syam Prasad K, a Junior Software Developer passionate about creating modern web applications.',
 };
 
 export default function Home() {

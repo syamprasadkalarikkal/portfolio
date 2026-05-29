@@ -28,12 +28,12 @@ const ProjectsSection = () => {
         </div>
 
         {/* CTA Banner */}
-        <div className="mx-auto mt-8 flex max-w-5xl flex-col items-stretch justify-between gap-4 rounded-lg border border-emerald-300/15 bg-[#07100b] p-5 shadow-[0_0_35px_rgba(52,211,153,0.08)] animate-slide-up delay-400 sm:p-6 md:flex-row md:items-center">
+        <div className="mx-auto mt-8 flex max-w-5xl flex-col items-stretch justify-between gap-4 rounded-lg border border-emerald-100 bg-white p-5 shadow-sm animate-slide-up delay-400 sm:p-6 md:flex-row md:items-center">
           <div className="text-center md:text-left">
-            <h3 className="mb-2 text-xl font-extrabold text-white sm:text-2xl" style={{ fontFamily: 'var(--font-display)' }}>
+            <h3 className="mb-2 text-xl font-extrabold text-slate-800 sm:text-2xl" style={{ fontFamily: 'var(--font-display)' }}>
               Have a project in mind?
             </h3>
-            <p className="text-sm leading-relaxed text-emerald-100/60">
+            <p className="text-sm leading-relaxed text-slate-500">
               I'm open to new collaborations and exciting challenges.
             </p>
           </div>

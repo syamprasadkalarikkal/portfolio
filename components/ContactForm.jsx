@@ -45,7 +45,7 @@ const ContactForm = () => {
 
   return (
     <div className="card h-full p-5 sm:p-8">
-      <h3 className="mb-4 text-lg font-extrabold text-white sm:mb-6 sm:text-xl" style={{ fontFamily: 'var(--font-display)' }}>
+      <h3 className="mb-4 text-lg font-extrabold text-slate-600 sm:mb-6 sm:text-xl" style={{ fontFamily: 'var(--font-display)' }}>
         Tell Me About It
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
@@ -54,7 +54,7 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {fields.slice(0, 2).map(({ id, label, type, placeholder }) => (
             <div key={id}>
-              <label htmlFor={id} className="mb-2 block text-xs font-semibold uppercase tracking-wide text-emerald-300/55">
+              <label htmlFor={id} className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-600">
                 {label}
               </label>
               <input
@@ -73,7 +73,7 @@ const ContactForm = () => {
 
         {/* Subject */}
         <div>
-          <label htmlFor="subject" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-emerald-300/55">
+          <label htmlFor="subject" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-600">
             Subject
           </label>
           <input
@@ -90,7 +90,7 @@ const ContactForm = () => {
 
         {/* Message */}
         <div>
-          <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-emerald-300/55">
+          <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-600">
             Message
           </label>
           <textarea

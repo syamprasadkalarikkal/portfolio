@@ -1,5 +1,5 @@
 export const personalData = {
-  name: "Syam Prasak K",
+  name: "Syam Prasad K",
   role: "Full-Stack Developer",
   tagline: "",
   email: "ecomorph10@gmail.com",
