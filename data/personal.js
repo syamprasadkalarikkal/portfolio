@@ -17,7 +17,7 @@ export const personalData = {
   },
 
   about: {
-    summary: "I am a Full-Stack Web Developer with hands-on experience building modern, scalable, and user-focused web applications. I work across frontend and backend, turning ideas into reliable digital products with clean code and best development practices.",
+    summary: "I am a Full-Stack Web Developer dedicated to building high-performance, responsive, and scalable web applications. With strong hands-on experience in React.js, Next.js, Node.js, and modern database systems, I specialize in crafting robust, user-centric digital solutions.",
     interests: [
       "Full Stack Development",
       "E-commerce Solutions",

@@ -29,8 +29,8 @@ const SkillsSection = () => {
           </p>
         </div>
 
-        {/* 3-Column Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
+        {/* 4-Column Grid */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 sm:gap-6 md:gap-6">
           {skillsData.categories.map((category) => (
             <div key={category.title}>
               {/* Category Label */}
