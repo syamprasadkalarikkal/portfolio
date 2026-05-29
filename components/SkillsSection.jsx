@@ -30,31 +30,40 @@ const SkillsSection = () => {
         </div>
 
         {/* 4-Column Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 sm:gap-6 md:gap-6">
-          {skillsData.categories.map((category) => (
-            <div key={category.title}>
-              {/* Category Label */}
-              <p
-                className="mb-4 text-[10px] font-bold tracking-[0.2em] uppercase text-slate-400 sm:text-[11px]"
-                style={{ fontFamily: 'var(--font-mono)' }}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-6">
+          {skillsData.categories.map((category) => {
+            const fileName = `${category.title.toLowerCase().replace(/\s+&\s+/g, '_').replace(/\s+/g, '_')}.json`;
+            return (
+              <div 
+                key={category.title} 
+                className="card card-hover p-4 sm:p-5 border border-emerald-100/60 bg-white/80 backdrop-blur-sm rounded-lg flex flex-col justify-between"
               >
-                {category.title}
-              </p>
+                <div>
+                  {/* Terminal prompt header */}
+                  <div className="mb-4 flex items-center justify-between text-xs font-mono text-slate-450 border-b border-slate-100 pb-2.5">
+                    <div className="flex items-center gap-1.5 truncate">
+                      <span className="text-emerald-600 font-bold">syam:~$</span>
+                      <span className="truncate">cat {fileName}</span>
+                    </div>
+                    <span className="text-[9px] text-slate-350 select-none font-sans uppercase">JSON</span>
+                  </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="inline-block rounded-md border border-slate-200 bg-white px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-700 hover:shadow-md sm:text-xs"
-                    style={{ fontFamily: 'var(--font-mono)' }}
-                  >
-                    {skill}
-                  </span>
-                ))}
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {category.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="inline-block rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.06em] text-slate-700 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-400 hover:text-emerald-700 hover:shadow-md"
+                        style={{ fontFamily: 'var(--font-mono)' }}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Bottom divider */}

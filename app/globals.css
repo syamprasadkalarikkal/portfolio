@@ -53,30 +53,6 @@
     @apply max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8;
   }
 
-  .section-label {
-    @apply inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold tracking-[0.14em] sm:tracking-[0.16em] uppercase;
-    @apply text-emerald-600 mb-2 sm:mb-3;
-    font-family: var(--font-mono);
-  }
-
-  .section-label::before {
-    content: '';
-    @apply block w-5 sm:w-7 h-px bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)];
-  }
-
-  .section-title {
-    font-family: var(--font-display);
-    @apply text-[1.65rem] sm:text-4xl lg:text-5xl font-extrabold mb-3 sm:mb-4 leading-tight;
-    @apply text-slate-900;
-  }
-
-  .section-title span {
-    @apply bg-gradient-to-r from-emerald-600 via-teal-600 to-lime-600 bg-clip-text text-transparent;
-  }
-
-  .section-subtitle {
-    @apply text-sm sm:text-base md:text-lg text-slate-500 leading-6 sm:leading-relaxed;
-  }
 
   /* Cards */
   .card {
@@ -169,25 +145,11 @@
     @apply border border-emerald-100/50;
   }
 
-  .hover-glow {
-    @apply transition-all duration-300;
-    @apply hover:shadow-[0_10px_30px_rgba(16,185,129,0.08)];
-  }
-
   /* Tag/Badge */
   .tag {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
     @apply bg-emerald-50 text-emerald-700;
     @apply border border-emerald-100/50;
-  }
-
-  .tag-primary {
-    @apply bg-lime-50 text-lime-800;
-    @apply border-lime-200;
-  }
-
-  .emoji-token {
-    will-change: transform;
   }
 }
 
@@ -284,29 +246,11 @@
   animation: fadeUp 0.6s ease forwards;
 }
 
-.animate-slide-down {
-  animation: fadeUp 0.4s ease forwards;
-}
 
 .animate-scale-in {
   animation: fadeIn 0.4s ease forwards;
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
-}
 
 /* Dot grid background pattern */
 .dot-grid {

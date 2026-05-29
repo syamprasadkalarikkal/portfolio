@@ -3,14 +3,13 @@ export const projectsData = [
     id: 1,
     slug: "ecommerce-application",
     title: "E-commerce Application",
-    type: "Freelance Project",
-    duration: "2024",
+    duration: "2026",
     description: "Developed a full-featured e-commerce web application with Next.js, Supabase, Razorpay payments, cart management, ratings, wishlist management, and order confirmation emails.",
     cover: {
-      label: "Commerce Platform",
-      metric: "Next.js + Supabase",
+      image: "/coverimage/ecommerce.png",
       tone: "emerald",
-      image: "/coverimage/ecommerce.png"
+      label: "E-Commerce",
+      metric: "Razorpay & Supabase"
     },
     keyFeatures: [
       "Authentication using Supabase",
@@ -36,14 +35,13 @@ export const projectsData = [
     id: 2,
     slug: "tech-fest-registration",
     title: "College Tech Fest Registration Website",
-    type: "College Tech Fest",
-    duration: "2023",
+    duration: "2025",
     description: "Designed and developed a responsive Next.js event website for a college technical fest, with event pages and a mobile-friendly participant experience.",
     cover: {
-      label: "Tech Fest Site",
-      metric: "Next.js Event Page",
+      image: "/coverimage/techfest.png",
       tone: "violet",
-      image: "/coverimage/techfest.png"
+      label: "Event System",
+      metric: "500+ Registrations"
     },
     keyFeatures: [
       "Next.js event page for the tech fest",
@@ -67,14 +65,13 @@ export const projectsData = [
     id: 3,
     slug: "collaborative-online-compiler",
     title: "Collaborative Online Compiler",
-    type: "Academic Project",
-    duration: "2024",
+    duration: "2025",
     description: "Built a collaborative online compiler with real-time compilation, Docker sandboxing for safe execution, code saving, AI error fixing, AI code generation, collaborative editing, and room-based messaging.",
     cover: {
-      label: "Compiler Workspace",
-      metric: "Realtime + Docker",
+      image: "/coverimage/compiler.svg",
       tone: "sky",
-      image: "/coverimage/compiler.svg"
+      label: "Developer Tool",
+      metric: "Docker & WebSockets"
     },
     keyFeatures: [
       "Real-time compilation and output display",

@@ -1,31 +1,27 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { FiExternalLink, FiGithub, FiArrowUpRight, FiShoppingBag, FiCalendar, FiTerminal } from 'react-icons/fi';
+import { FiArrowUpRight } from 'react-icons/fi';
 
 const coverStyles = {
   emerald: {
     shell: 'bg-emerald-50/60',
     accent: 'bg-emerald-500',
     text: 'text-emerald-700',
-    icon: FiShoppingBag,
   },
   violet: {
     shell: 'bg-violet-50/60',
     accent: 'bg-violet-500',
-    text: 'text-violet-750 border-violet-100',
-    icon: FiCalendar,
+    text: 'text-violet-700 border-violet-100',
   },
   sky: {
     shell: 'bg-sky-50/60',
     accent: 'bg-sky-500',
     text: 'text-sky-700',
-    icon: FiTerminal,
   },
 };
 
 const ProjectCover = ({ project }) => {
   const style = coverStyles[project.cover?.tone] || coverStyles.sky;
-  const Icon = style.icon;
 
   return (
     <div className={`relative aspect-[16/9] overflow-hidden ${style.shell} border-b border-emerald-100/50`}>
@@ -41,35 +37,15 @@ const ProjectCover = ({ project }) => {
       ) : (
         <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,rgba(16,185,129,.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(16,185,129,.12)_1px,transparent_1px)] [background-size:28px_28px]" />
       )}
-
-      {/* Floating Header Info */}
-      <div className="absolute left-3 right-3 top-3 flex items-center justify-between gap-2">
-        <div className="flex min-w-0 items-center gap-2 rounded-md border border-slate-100 bg-white/90 px-2.5 py-1.5 backdrop-blur-md shadow-sm">
-          <span className={`h-2 w-2 flex-shrink-0 rounded-full ${style.accent}`} />
-          <span className="truncate text-[10px] font-bold uppercase tracking-[0.12em] text-slate-700">
-            {project.cover?.label}
-          </span>
-        </div>
-        <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md border border-slate-100 bg-white/90 text-emerald-600 backdrop-blur-md shadow-sm">
-          <Icon className="h-4 w-4" />
-        </div>
-      </div>
-
-      {/* Floating Footer Info */}
-      <div className="absolute bottom-3 left-3 right-3 flex flex-wrap items-center gap-1.5">
-        <span className={`rounded-md border border-emerald-100 bg-white/95 px-2.5 py-1 text-[11px] font-bold backdrop-blur-md shadow-sm ${style.text}`}>
-          {project.cover?.metric}
-        </span>
-      </div>
     </div>
   );
 };
 
 const ProjectCard = ({ project, index }) => {
   const typeStyle = {
-    'Freelance Project': 'bg-emerald-50 text-emerald-700 border border-emerald-200',
-    'College Tech Fest': 'bg-violet-50 text-violet-750 border border-violet-200',
-    'Academic Project': 'bg-sky-50 text-sky-755 border border-sky-250',
+    'Freelance Project': 'bg-emerald-50 text-emerald-700 border border-emerald-250',
+    'College Tech Fest': 'bg-violet-50 text-violet-700 border border-violet-250',
+    'Academic Project': 'bg-sky-50 text-sky-700 border border-sky-200',
   };
 
   return (
@@ -77,6 +53,15 @@ const ProjectCard = ({ project, index }) => {
       className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-emerald-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.1)] animate-slide-up"
       style={{ animationDelay: `${index * 0.12}s` }}
     >
+      {/* Terminal prompt header */}
+      <div className="flex items-center justify-between bg-slate-50/80 px-3.5 py-2.5 border-b border-emerald-100/50 text-[11px] font-mono text-slate-450">
+        <div className="flex items-center gap-1.5 truncate">
+          <span className="text-emerald-600 font-bold">syam:~$</span>
+          <span className="truncate">cat {project.slug}.info</span>
+        </div>
+        <span className="text-[9px] text-slate-350 select-none uppercase font-sans">INFO</span>
+      </div>
+
       {/* Top accent line */}
       <div className="absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
@@ -123,31 +108,28 @@ const ProjectCard = ({ project, index }) => {
         </p>
 
         {/* Action Links */}
-        <div className="mt-auto grid grid-cols-[1fr_auto_auto] gap-2 border-t border-emerald-100 pt-4">
+        <div className="mt-auto grid grid-cols-3 gap-2 border-t border-emerald-100/50 pt-4 font-mono text-[11px]">
           <Link
             href={`/projects/${project.slug}`}
-            className="flex min-h-10 items-center justify-center gap-2 rounded-lg bg-emerald-600 text-sm font-semibold text-white shadow-sm transition-all hover:bg-emerald-700"
+            className="flex min-h-10 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50/50 font-bold text-emerald-800 transition-all hover:bg-emerald-100/50 hover:border-emerald-400"
           >
-            Details
-            <FiArrowUpRight className="h-4 w-4" />
+            ./details
           </Link>
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${project.title} source code`}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-100 bg-emerald-50 text-slate-600 transition-all hover:border-emerald-400 hover:text-emerald-600"
+            className="flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-50/80 font-bold text-slate-650 transition-all hover:bg-slate-100/70 hover:border-slate-350 hover:text-slate-800"
           >
-            <FiGithub className="w-4 h-4" />
+            git_clone
           </a>
           <a
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${project.title} live demo`}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-100 bg-emerald-50 text-slate-600 transition-all hover:border-emerald-400 hover:text-emerald-600"
+            className="flex min-h-10 items-center justify-center rounded-lg bg-slate-900 font-bold text-emerald-400 shadow-sm transition-all hover:bg-slate-800 hover:text-emerald-300"
           >
-            <FiExternalLink className="w-4 h-4" />
+            npm_run
           </a>
         </div>
 

@@ -13,9 +13,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white border-t border-emerald-100">
+    <footer className="bg-white border-t border-emerald-100/60">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
-        <div className="flex flex-col items-center justify-between gap-5 border-b border-emerald-100 pb-6 text-center sm:flex-row sm:text-left">
+        <div className="flex flex-col items-center justify-between gap-5 border-b border-emerald-100/50 pb-6 text-center sm:flex-row sm:text-left">
           <span className="text-lg font-extrabold text-slate-800" style={{ fontFamily: 'var(--font-display)' }}>
             syam<span className="text-emerald-600">.dev</span>
           </span>
@@ -37,17 +37,23 @@ const Footer = () => {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-3 pt-5 sm:flex-row">
-          <p className="text-sm text-slate-600">
+        <div className="flex flex-col items-center justify-between gap-4 pt-5 sm:flex-row">
+          <p className="text-xs sm:text-sm text-slate-500 font-sans">
             © {year} {personalData.name}. All rights reserved.
           </p>
+          
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-400 select-none">
+            <span className="text-emerald-600 font-bold">syam:~$</span>
+            <span className="animate-pulse">exit</span>
+          </div>
+
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-emerald-600 transition-colors"
+            className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 hover:text-emerald-600 transition-colors font-mono"
           >
             Back to top <FiArrowUp className="w-3.5 h-3.5" />
           </a>
