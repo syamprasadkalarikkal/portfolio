@@ -3,6 +3,7 @@ import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: 'Syam Prasad K - Full Stack Developer',
@@ -12,6 +13,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
+      <Analytics />
       <Hero />
       <AboutSection />
       <SkillsSection />

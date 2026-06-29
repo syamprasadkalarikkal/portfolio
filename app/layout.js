@@ -3,6 +3,7 @@ import Script from 'next/script';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+
 export const metadata = {
   title: 'Syam Prasad K | Full Stack Developer',
   description: 'Portfolio of Syam Prasad, full stack developer building AI powered web applications.',
