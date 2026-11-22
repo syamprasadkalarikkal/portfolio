@@ -1,3 +1,4 @@
+import PortfolioPageIntro from '@/components/PortfolioPageIntro';
 import Image from 'next/image';
 import Link from 'next/link';
 import GuideNavigation from '@/components/GuideNavigation';
@@ -101,57 +102,57 @@ function GuideScreenshot({ name, alt, caption, source, compact = false }) {
 
 export default function ERPNextPage() {
   return (
-    <article className="portfolio-shell portfolio-section project-detail">
-      <Link className="portfolio-back" href="/#skills">Back to skills</Link>
-      <header className="erp-guide-hero">
-        <div>
-          <h1>ERPNext for business owners</h1>
-          <p className="project-detail-summary">See how ERPNext connects your company, accounts, sales, purchasing, production, and stock. Each section shows what your team will use, what to set up, and what to test before launch.</p>
-        </div>
+    <article>
+      <PortfolioPageIntro
+        title="ERPNext for business owners"
+        description="See how ERPNext connects your company, accounts, sales, purchasing, production, and stock. Each section shows what your team will use, what to set up, and what to test before launch."
+        backLink={<Link className="portfolio-back" href="/#skills">Back to skills</Link>}
+      >
         <GuideScreenshot name="dashboard" alt={modules[3].alt} caption="ERPNext Selling workspace" source={docs + 'selling'} compact />
-      </header>
+      </PortfolioPageIntro>
+      <div className="portfolio-shell portfolio-section">
+        <GuideNavigation topics={guideTopics} />
 
-      <GuideNavigation topics={guideTopics} />
+        <section id="introduction" className="guide-chapter">
+          <h2>Introduction to ERPNext</h2>
+          <p>ERPNext gives teams a shared record of what the business buys, sells, makes, stores, and owes. A single customer order can inform delivery, billing, and stock reporting without each team entering the same information again.</p>
+          <h3>Sign in and find your workspace</h3>
+          <p>Open your company’s ERPNext address and sign in with your assigned account. Use Desk to open a workspace or search for a record such as an item, customer, or invoice. What appears depends on your role.</p>
+          <div className="guide-image-pair">
+            <GuideScreenshot name="login" alt="ERPNext sign-in form" caption="ERPNext sign-in" source="https://erpnext-demo.frappe.cloud/login" compact />
+            <GuideScreenshot name="desk" alt="Desk showing available Frappe apps after signing in" caption="Frappe Desk" source="https://docs.frappe.io/framework/user/en/desk/navigation/desktop" compact />
+          </div>
+        </section>
 
-      <section id="introduction" className="guide-chapter">
-        <h2>Introduction to ERPNext</h2>
-        <p>ERPNext gives teams a shared record of what the business buys, sells, makes, stores, and owes. A single customer order can inform delivery, billing, and stock reporting without each team entering the same information again.</p>
-        <h3>Sign in and find your workspace</h3>
-        <p>Open your company’s ERPNext address and sign in with your assigned account. Use Desk to open a workspace or search for a record such as an item, customer, or invoice. What appears depends on your role.</p>
-        <div className="guide-image-pair">
-          <GuideScreenshot name="login" alt="ERPNext sign-in form" caption="ERPNext sign-in" source="https://erpnext-demo.frappe.cloud/login" compact />
-          <GuideScreenshot name="desk" alt="Desk showing available Frappe apps after signing in" caption="Frappe Desk" source="https://docs.frappe.io/framework/user/en/desk/navigation/desktop" compact />
+        <div className="erp-solutions">
+          {modules.map(({ id, title, intro, workflow, check, image, alt, source, detailHeading, detail }) => (
+            <section key={id} id={id} className="erp-solution" aria-labelledby={`${id}-title`}>
+              <h2 id={`${id}-title`}>{title}</h2>
+              <GuideScreenshot name={image} alt={alt} caption={title} source={docs + source} />
+              <div className="erp-solution-copy">
+                <p>{intro}</p>
+                <h3>{detailHeading}</h3>
+                <p>{detail}</p>
+                <p>{workflow}</p>
+                <h3>Before go-live</h3>
+                <p>{check}</p>
+              </div>
+            </section>
+          ))}
         </div>
-      </section>
 
-      <div className="erp-solutions">
-        {modules.map(({ id, title, intro, workflow, check, image, alt, source, detailHeading, detail }) => (
-          <section key={id} id={id} className="erp-solution" aria-labelledby={`${id}-title`}>
-            <h2 id={`${id}-title`}>{title}</h2>
-            <GuideScreenshot name={image} alt={alt} caption={title} source={docs + source} />
-            <div className="erp-solution-copy">
-              <p>{intro}</p>
-              <h3>{detailHeading}</h3>
-              <p>{detail}</p>
-              <p>{workflow}</p>
-              <h3>Before go-live</h3>
-              <p>{check}</p>
-            </div>
-          </section>
-        ))}
+        <section id="rollout" className="guide-chapter">
+          <h2>Implementation and customization</h2>
+          <p>I set up and implement ERPNext, customize the workflows that need to work differently, and build dashboards around the numbers your team uses to make decisions.</p>
+          <dl className="guide-checklist">
+            <div><dt>Set up and implement</dt><dd>Choose the modules, clean and migrate data, configure permissions, and have staff run realistic test transactions.</dd></div>
+            <div><dt>Customize the workflow</dt><dd>Adapt forms, DocTypes, approvals, print formats, automations, and integrations. Package larger changes in a Frappe app.</dd></div>
+            <div><dt>Build custom dashboards</dt><dd>Define KPIs with the people who use them, connect them to posted transactions, and check the output against source reports.</dd></div>
+            <div><dt>Plan the rollout</dt><dd>Assign owners, reconcile opening records, rehearse migration and backup recovery, and give users time to practice before switching over.</dd></div>
+          </dl>
+        </section>
+        <Link className="portfolio-button portfolio-button--primary" href="/#contact">Discuss an ERPNext project</Link>
       </div>
-
-      <section id="rollout" className="guide-chapter">
-        <h2>Implementation and customization</h2>
-        <p>I set up and implement ERPNext, customize the workflows that need to work differently, and build dashboards around the numbers your team uses to make decisions.</p>
-        <dl className="guide-checklist">
-          <div><dt>Set up and implement</dt><dd>Choose the modules, clean and migrate data, configure permissions, and have staff run realistic test transactions.</dd></div>
-          <div><dt>Customize the workflow</dt><dd>Adapt forms, DocTypes, approvals, print formats, automations, and integrations. Package larger changes in a Frappe app.</dd></div>
-          <div><dt>Build custom dashboards</dt><dd>Define KPIs with the people who use them, connect them to posted transactions, and check the output against source reports.</dd></div>
-          <div><dt>Plan the rollout</dt><dd>Assign owners, reconcile opening records, rehearse migration and backup recovery, and give users time to practice before switching over.</dd></div>
-        </dl>
-      </section>
-      <Link className="portfolio-button portfolio-button--primary" href="/#contact">Discuss an ERPNext project</Link>
     </article>
   );
 }

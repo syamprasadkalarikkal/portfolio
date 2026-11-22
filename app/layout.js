@@ -2,7 +2,6 @@ import './globals.css';
 import './portfolio.css';
 import Script from 'next/script';
 import Link from 'next/link';
-import { FiMail, FiPhone } from 'react-icons/fi';
 import SiteNavigation from '@/components/SiteNavigation';
 import { personalData } from '@/data/personal';
 
@@ -55,23 +54,23 @@ export default function RootLayout({ children }) {
         <a href="#main-content" className="portfolio-skip">Skip to content</a>
         <header className="portfolio-header">
           <div className="portfolio-shell masthead">
-            <Link href="/" className="portfolio-brand">syam<span>.</span></Link>
+            <Link href="/" className="portfolio-brand">
+              <strong>Syam <span>Prasad K</span></strong>
+              <small>Software developer</small>
+            </Link>
             <SiteNavigation />
           </div>
         </header>
         <main id="main-content" className="min-h-screen">{children}</main>
-        <nav className="contact-dock" aria-label="Quick contact">
-          <a className="contact-dock-phone" href={`tel:${personalData.phone.replace(/\s/g, '')}`}><FiPhone aria-hidden="true" /> <span className="contact-dock-number">{personalData.phone}</span></a>
-          <a href={`mailto:${personalData.email}`} title="Email"><FiMail aria-hidden="true" /> <span className="sr-only">Email</span></a>
-        </nav>
         <footer className="portfolio-footer">
-          <div className="portfolio-shell masthead">
-            <p>© {new Date().getFullYear()} {personalData.name}</p>
+          <div className="portfolio-shell masthead footer-inner">
             <nav aria-label="Social links">
               <a href={personalData.github}>GitHub</a>
               <a href={personalData.linkedin}>LinkedIn</a>
               <a href={`mailto:${personalData.email}`}>Email</a>
+              <a href={`tel:${personalData.phone.replace(/\s/g, '')}`}>Call</a>
             </nav>
+            <p>© {new Date().getFullYear()} {personalData.name}</p>
           </div>
         </footer>
       </body>

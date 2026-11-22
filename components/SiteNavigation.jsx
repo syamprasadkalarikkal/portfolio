@@ -2,17 +2,26 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const links = [
-  { href: '/#about', label: 'About' },
-  { href: '/#skills', label: 'Skills' },
   { href: '/#projects', label: 'Projects' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#about', label: 'About' },
   { href: '/erpnext', label: 'ERPNext' },
   { href: '/#contact', label: 'Contact' },
 ];
 
+function NavigationLinks({ pathname, onClick }) {
+  return links.map(({ href, label }) => {
+    const current = pathname === href ? 'page' : pathname?.startsWith(href + '/') ? 'location' : undefined;
+    return <Link key={href} href={href} aria-current={current} onClick={onClick}>{label}</Link>;
+  });
+}
+
 export default function SiteNavigation() {
+  const pathname = usePathname();
   const disclosure = useRef(null);
   const trigger = useRef(null);
   const closeButton = useRef(null);
@@ -45,7 +54,7 @@ export default function SiteNavigation() {
   return (
     <>
       <nav className="desktop-navigation" aria-label="Main navigation">
-        {links.map(({ href, label }) => <Link key={href} href={href}>{label}</Link>)}
+        <NavigationLinks pathname={pathname} />
       </nav>
       <details ref={disclosure} className="mobile-navigation" onKeyDown={handleKeyDown} onToggle={(event) => {
         if (event.currentTarget.open) closeButton.current?.focus();
@@ -61,7 +70,7 @@ export default function SiteNavigation() {
           <button ref={closeButton} className="mobile-menu-dismiss" type="button" onClick={dismissMenu}>
             Close <FiX aria-hidden="true" />
           </button>
-          {links.map(({ href, label }) => <Link key={href} href={href} onClick={closeMenu}>{label}</Link>)}
+          <NavigationLinks pathname={pathname} onClick={closeMenu} />
         </nav>
       </details>
     </>

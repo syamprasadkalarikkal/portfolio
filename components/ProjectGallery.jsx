@@ -1,22 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import ProjectVisual from './ProjectVisual';
 
 export default function ProjectGallery({ projects, preview = false }) {
   const [category, setCategory] = useState('All');
-  useEffect(() => {
-    const phone = window.matchMedia('(width < 42rem)');
-
-    function resetMobileFilter(event) {
-      if (event.matches) setCategory('All');
-    }
-
-    phone.addEventListener('change', resetMobileFilter);
-    return () => phone.removeEventListener('change', resetMobileFilter);
-  }, []);
-
   const categories = ['All', ...new Set(projects.map((project) => project.category).filter(Boolean))];
   const visibleProjects = category === 'All' ? projects : projects.filter((project) => project.category === category);
 
@@ -29,8 +18,8 @@ export default function ProjectGallery({ projects, preview = false }) {
           </button>
         ))}
       </div>
-      <p className="sr-only" role="status">{visibleProjects.length} projects</p>
-      <div className={preview ? "project-grid project-grid--preview" : "project-grid"}>
+      <p className="sr-only" role="status">{visibleProjects.length} matching projects</p>
+      <div className={preview && category === 'All' ? "project-grid project-grid--preview" : "project-grid"}>
         {(preview ? visibleProjects.slice(0, 6) : visibleProjects).map((project) => (
           <article className="work-card" key={project.slug}>
             <Link className="work-link" href={`/projects/${project.slug}`}>
@@ -45,9 +34,9 @@ export default function ProjectGallery({ projects, preview = false }) {
           </article>
         ))}
       </div>
-      {preview && visibleProjects.length > 3 && (
-        <Link className={`project-text-link project-more${visibleProjects.length <= 6 ? ' project-more--mobile' : ''}`} href="/projects">
-          See more projects
+      {preview && (
+        <Link className="project-text-link project-more" href="/projects">
+          View all projects
         </Link>
       )}
     </>
