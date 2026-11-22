@@ -1,13 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import Link from 'next/link';
 import { FiRefreshCw, FiHome } from 'react-icons/fi';
 
-export default function Error({ error, reset }) {
-  useEffect(() => {
-    console.error('Application error:', error);
-  }, [error]);
-
+export default function Error({ reset }) {
   return (
     <section className="page-container min-h-[70vh] bg-[#f8faf8]">
       <div className="section-container flex min-h-[58vh] items-center justify-center">
@@ -29,10 +25,10 @@ export default function Error({ error, reset }) {
               <FiRefreshCw className="h-4 w-4" />
               Try again
             </button>
-            <a href="/" className="btn btn-secondary">
+            <Link href="/" className="btn btn-secondary">
               <FiHome className="h-4 w-4" />
               Home
-            </a>
+            </Link>
           </div>
         </div>
       </div>

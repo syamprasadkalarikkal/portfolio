@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { personalData } from '@/data/personal';
 
 export const runtime = 'nodejs';
 
@@ -43,20 +44,6 @@ const checkRateLimit = (key) => {
 };
 
 const getMailErrorMessage = (error) => {
-  const response = String(error?.response || error?.message || '').toLowerCase();
-
-  if (response.includes('invalid login') || response.includes('username and password')) {
-    return 'Email login failed. Regenerate the Gmail app password and update EMAIL_PASS.';
-  }
-
-  if (response.includes('less secure') || response.includes('application-specific password')) {
-    return 'Gmail requires an app password for the contact form account.';
-  }
-
-  if (error?.code === 'EAUTH') {
-    return 'Email authentication failed. Regenerate the Gmail app password and update EMAIL_PASS.';
-  }
-
   if (error?.code === 'ECONNECTION' || error?.code === 'ETIMEDOUT') {
     return 'Email server connection failed. Please try again in a moment.';
   }
@@ -166,10 +153,10 @@ export async function POST(req) {
 
     const emailUser = cleanEnvValue(process.env.EMAIL_USER || '');
     const emailPass = cleanEnvValue(process.env.EMAIL_PASS || '').replace(/\s/g, '');
-    const contactEmail = cleanEnvValue(process.env.CONTACT_EMAIL || '') || emailUser;
+    const contactEmail = cleanEnvValue(process.env.CONTACT_EMAIL || '') || personalData.email;
 
     if (!emailUser || !emailPass || !contactEmail) {
-      console.error('Missing EMAIL_USER, EMAIL_PASS, or CONTACT_EMAIL for contact form.');
+      console.error('Contact email credentials are not configured.');
       return NextResponse.json(
         { message: 'Email service is not configured yet.' },
         { status: 500 }
@@ -219,7 +206,7 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Contact email delivery failed.', { code: error?.code });
     return NextResponse.json(
       { message: getMailErrorMessage(error) },
       { status: 500 }
