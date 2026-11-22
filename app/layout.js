@@ -2,7 +2,7 @@ import './globals.css';
 import './portfolio.css';
 import Script from 'next/script';
 import Link from 'next/link';
-import { FiMail, FiPhone, FiUserPlus } from 'react-icons/fi';
+import { FiMail, FiPhone } from 'react-icons/fi';
 import SiteNavigation from '@/components/SiteNavigation';
 import { personalData } from '@/data/personal';
 
@@ -63,7 +63,6 @@ export default function RootLayout({ children }) {
         <nav className="contact-dock" aria-label="Quick contact">
           <a className="contact-dock-phone" href={`tel:${personalData.phone.replace(/\s/g, '')}`}><FiPhone aria-hidden="true" /> <span className="contact-dock-number">{personalData.phone}</span></a>
           <a href={`mailto:${personalData.email}`} title="Email"><FiMail aria-hidden="true" /> <span className="sr-only">Email</span></a>
-          <a className="contact-dock-referral" href={`mailto:${personalData.email}?subject=Referral%20for%20Syam%20Prasad`} title="Send a referral"><FiUserPlus aria-hidden="true" /> <span className="sr-only">Send a referral</span></a>
         </nav>
         <footer className="portfolio-footer">
           <div className="portfolio-shell masthead">

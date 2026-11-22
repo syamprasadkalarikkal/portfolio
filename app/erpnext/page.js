@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import GuideNavigation from '@/components/GuideNavigation';
 
 export const metadata = {
   title: 'ERPNext Business Guide | Syam Prasad K',
@@ -74,6 +75,12 @@ const modules = [
   },
 ];
 
+const guideTopics = [
+  { id: 'introduction', title: 'Introduction' },
+  ...modules.map(({ id, title }) => ({ id, title })),
+  { id: 'rollout', title: 'Implementation and customization' },
+];
+
 const screenshotSizes = {
   login: [1280, 800], desk: [1440, 900], invoice: [1440, 900], dashboard: [1440, 810],
   company: [1440, 900], accounts: [1440, 900], purchasing: [1440, 900], manufacturing: [1172, 631], stock: [1280, 653],
@@ -104,11 +111,7 @@ export default function ERPNextPage() {
         <GuideScreenshot name="dashboard" alt={modules[3].alt} caption="ERPNext Selling workspace" source={docs + 'selling'} compact />
       </header>
 
-      <nav className="guide-contents" aria-label="Guide contents">
-        <a href="#introduction">Introduction</a>
-        {modules.map(({ id, title }) => <a key={id} href={`#${id}`}>{title}</a>)}
-        <a href="#rollout">Implementation and customization</a>
-      </nav>
+      <GuideNavigation topics={guideTopics} />
 
       <section id="introduction" className="guide-chapter">
         <h2>Introduction to ERPNext</h2>

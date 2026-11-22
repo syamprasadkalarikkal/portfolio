@@ -49,7 +49,7 @@ export default function ContactForm() {
             <option>ERPNext development</option>
             <option>Saudi e-invoicing</option>
             <option>Web development</option>
-            <option>Job or referral</option>
+            <option>Job opportunity</option>
             <option>Other</option>
           </select>
         </label>

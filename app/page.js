@@ -97,7 +97,7 @@ export default function Home() {
             <h2 id="contact-title">Let’s talk<span>.</span></h2>
           </div>
           <div className="portfolio-prose">
-            <p>Have a project, job opportunity, or referral in mind? Tell me a little about it.</p>
+            <p>Have a project or job opportunity in mind? Tell me a little about it.</p>
             <details className="contact-card">
               <summary>Open contact form</summary>
               <div className="contact-card-content"><ContactForm /></div>
