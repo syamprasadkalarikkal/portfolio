@@ -6,11 +6,12 @@ import { usePathname } from 'next/navigation';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const links = [
-  { href: '/#projects', label: 'Projects' },
-  { href: '/#skills', label: 'Skills' },
+  { href: '/', label: 'Home' },
   { href: '/#about', label: 'About' },
-  { href: '/erpnext', label: 'ERPNext' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#projects', label: 'Projects' },
   { href: '/#contact', label: 'Contact' },
+  { href: '/erpnext', label: 'ERPNext' },
 ];
 
 function NavigationLinks({ pathname, onClick }) {
